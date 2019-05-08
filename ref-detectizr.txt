@@ -1,0 +1,28 @@
+라이브러리 소개 URL: http://barisaydinoglu.github.io/Detectizr/
+사용법 URL: https://github.com/barisaydinoglu/Detectizr/wiki/Usage
+
+[addAllFeaturesAsClass]
+아래 속성 값이 true인 기능이 미지원하는 값에 'no-' 접두사를 붙여 class 속성 추가
+[detectDevice]
+	기기 유형 및 회전 방향 체크
+	예) tv, desktop, tablet, mobile, portrait, landscape
+
+[detectDeviceModel]
+	기기 모델 체크 [detectDevice, detectOS]
+	예) android, ipad, iphone, ios, smartTv, gameConsole, android, kindle, blackberry, symbian, ...
+
+[detectScreen]
+	스크린 사이즈 체크
+	예) veryVerySmall, verySmall, small, high
+
+[detectOS]
+	운영체제 유형 및 버전 체크
+	예) mac, macosx, linux, windows, windows8, windows8_1
+
+[detectBrowser]
+	브라우저 유형 및 버전 체크
+	예) safari, safari8, chrome, webkit, firefox, gecko, opera, presto, ...
+	
+[detectPlugins]
+	브라우저 플러그인 체크
+	예) java, flash, adobereader, wmplayer, silverlight, quicktime

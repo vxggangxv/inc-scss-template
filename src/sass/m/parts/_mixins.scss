@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+// 전달인자 설징이 없는 믹스인
+@mixin reset-box-model {
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+@mixin reset-table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+// 전달인자가 설정된 믹스인
+@mixin position($type:relative, $top:null, $left:null, $bottom:null, $right:null) {
+	position: $type;
+	top: $top;
+	left: $left;
+	bottom: $bottom;
+	right: $right;
+}
+
+@mixin size($w:null, $h:null) {
+	width: $w;
+	height: $h;
+}
+@mixin transition($args...) {
+	-webkit-transition: $args;
+	transition: $args;
+}
+@mixin margin($t:null, $l:null) {
+	margin-top: $t;
+	margin-left: $l;
+}
+// 마이크로 클리어픽스(Micro Clearfix)
+@mixin clearfix {
+	&::before, &::after {
+		content: '';
+		display: table;
+	}
+	&::after {
+		clear: both;
+	}
+	.lt-ie8 & {
+		zoom: 1;
+	}
+}
