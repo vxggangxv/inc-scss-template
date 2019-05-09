@@ -35,10 +35,9 @@ module.exports = function() {
 			dest: development + '/static/js'
 		},
 
-		// HTML Prettify 옵션
-		htmlPrettify = {
-			"indent_char": " ",
-			"indent_size": 4
+		// HTML 옵션
+		htmlbeautify = {
+			"indentSize": 4
 		};
 
 	return {
@@ -50,6 +49,6 @@ module.exports = function() {
 		sass : sass,
 		js   : js,
 
-		htmlPrettify : htmlPrettify
+		htmlbeautify : htmlbeautify
 	};
 };

@@ -10,7 +10,7 @@ var del = require('del'),
 	autoprefixer  = require('gulp-autoprefixer'),
 	plumber   = require('gulp-plumber'),
 	watch     = require('gulp-watch'),
-	prettify  = require('gulp-html-prettify'),
+	htmlbeautify  = require('gulp-html-beautify'),
 	browserSync = require('browser-sync').create(), // browser-sync 호출
 
 	config  = require('./config')(); // 환경설정 ./config.js
@@ -90,7 +90,7 @@ gulp.task('template', function(){
 			prefix: '@@',
 			basepath: '@file'
 		}))
-		.pipe( prettify( config.htmlPrettify) )
+		.pipe( htmlbeautify( config.htmlbeautify) )
 		.pipe( gulp.dest( config.template.dest) )
 		.pipe(browserSync.stream({ match: '**/*.html' }));
 });
@@ -101,7 +101,7 @@ gulp.task('template_m', function(){
 			prefix: '@@',
 			basepath: '@file'
 		}))
-		.pipe( prettify( config.htmlPrettify) )
+		.pipe( htmlbeautify( config.htmlbeautify) )
 		.pipe( gulp.dest( config.template.dest_m) )
 		.pipe(browserSync.stream({ match: '**/*.html' }));
 });
