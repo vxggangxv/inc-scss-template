@@ -35,6 +35,11 @@ module.exports = function() {
 			dest: development + '/static/js'
 		},
 
+		img = {
+			src : source + '/img/**/*.{gif,jpg,png}',
+			dest: development + '/img'
+		},
+
 		// HTML 옵션
 		htmlbeautify = {
 			"indentSize": 4
@@ -46,8 +51,11 @@ module.exports = function() {
 		dev  : development,
 		
 		template : template,
-		sass : sass,
-		js   : js,
+		sass     : sass,
+		css      : css,
+		js       : js,
+
+		img  : img,
 
 		htmlbeautify : htmlbeautify
 	};

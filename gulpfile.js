@@ -7,8 +7,13 @@ var del = require('del'),
 	fileinclude  = require('gulp-file-include'),
 	sass	  = require('gulp-sass'),
 	sourcemaps  = require('gulp-sourcemaps'),
+	// autoprefixer  = require('autoprefixer'),
 	autoprefixer  = require('gulp-autoprefixer'),
-	plumber   = require('gulp-plumber'),
+	// cssmin = require('gulp-cssmin'),
+	cleanCSS = require('gulp-clean-css'),
+	rename = require('gulp-rename'),
+	imagemin = require('gulp-imagemin'),
+	// plumber   = require('gulp-plumber'),
 	watch     = require('gulp-watch'),
 	htmlbeautify  = require('gulp-html-beautify'),
 	browserSync = require('browser-sync').create(), // browser-sync 호출
@@ -85,7 +90,6 @@ gulp.task('clean:js', function(){
 // HTML 템플릿
 gulp.task('template', function(){
 	return gulp.src(config.template.src)
-		.pipe( plumber() )
 		.pipe( fileinclude({
 			prefix: '@@',
 			basepath: '@file'
@@ -96,7 +100,6 @@ gulp.task('template', function(){
 });
 gulp.task('template_m', function(){
 	return gulp.src(config.template.src_m)
-		.pipe( plumber() )
 		.pipe( fileinclude({
 			prefix: '@@',
 			basepath: '@file'
@@ -108,21 +111,28 @@ gulp.task('template_m', function(){
 // scss 컴파일러
 gulp.task('sass', function() {
 	return gulp.src( config.sass.src )
-		.pipe( plumber() )
 		.pipe(sourcemaps.init())
 		.pipe( sass({outputStyle: 'compact'}).on('error', sass.logError)) // {outputStyle: nested} expanded, compact, compressed
-        .pipe(autoprefixer({
-			browsers: ['last 2 versions'],
-            cascade: false
-        }))
+        .pipe(autoprefixer())
 		.pipe(sourcemaps.write())
 		.pipe( gulp.dest( config.sass.dest) )
 		.pipe(browserSync.stream({ match: '**/*.css' }));
 });
-// js reload
+gulp.task('css', function() {
+	return gulp.src( config.css.src )
+		.pipe( cleanCSS())
+		.pipe(autoprefixer())
+		.pipe( rename({suffix: '.min'}) )
+		.pipe( gulp.dest( config.css.dest) )
+		.pipe(browserSync.stream({ match: '**/*.css' }));
+});
 gulp.task('js', function(){
 	return gulp.src(config.js.src)
-		.pipe( plumber() )
 		.pipe( gulp.dest(config.js.dest) )
 		.pipe(browserSync.stream({ match: '**/*.js' }));
+});
+gulp.task('img', function() {
+	return gulp.src(config.img.src)
+        .pipe(imagemin())
+		.pipe(gulp.dest(config.img.dest));
 });
