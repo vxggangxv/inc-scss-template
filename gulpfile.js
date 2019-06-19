@@ -94,9 +94,9 @@ gulp.task('template', function(){
 			prefix: '@@',
 			basepath: '@file'
 		}))
-		.pipe( htmlbeautify( config.htmlbeautify) )
-		.pipe( gulp.dest( config.template.dest) )
-		.pipe(browserSync.stream({ match: '**/*.html' }));
+		.pipe( htmlbeautify(config.htmlbeautify) )
+		.pipe( gulp.dest(config.template.dest) )
+		.pipe( browserSync.stream({ match: '**/*.html' }) );
 });
 gulp.task('template_m', function(){
 	return gulp.src(config.template.src_m)
@@ -104,35 +104,35 @@ gulp.task('template_m', function(){
 			prefix: '@@',
 			basepath: '@file'
 		}))
-		.pipe( htmlbeautify( config.htmlbeautify) )
+		.pipe( htmlbeautify(config.htmlbeautify) )
 		.pipe( gulp.dest( config.template.dest_m) )
-		.pipe(browserSync.stream({ match: '**/*.html' }));
+		.pipe( browserSync.stream({ match: '**/*.html' }) );
 });
 // scss 컴파일러
 gulp.task('sass', function() {
-	return gulp.src( config.sass.src )
-		.pipe(sourcemaps.init())
+	return gulp.src(config.sass.src)
+		.pipe( sourcemaps.init() )
 		.pipe( sass({outputStyle: 'compact'}).on('error', sass.logError)) // {outputStyle: nested} expanded, compact, compressed
-        .pipe(autoprefixer())
-		.pipe(sourcemaps.write())
-		.pipe( gulp.dest( config.sass.dest) )
-		.pipe(browserSync.stream({ match: '**/*.css' }));
+        .pipe( autoprefixer() )
+		.pipe( sourcemaps.write() )
+		.pipe( gulp.dest(config.sass.dest) )
+		.pipe( browserSync.stream({ match: '**/*.css' }) );
 });
 gulp.task('css', function() {
-	return gulp.src( config.css.src )
-		.pipe( cleanCSS())
-		.pipe(autoprefixer())
+	return gulp.src(config.css.src)
+		.pipe( autoprefixer() )
+		.pipe( cleanCSS() )
 		.pipe( rename({suffix: '.min'}) )
-		.pipe( gulp.dest( config.css.dest) )
-		.pipe(browserSync.stream({ match: '**/*.css' }));
+		.pipe( gulp.dest(config.css.dest) )
+		.pipe( browserSync.stream({ match: '**/*.css' }) );
 });
 gulp.task('js', function(){
 	return gulp.src(config.js.src)
 		.pipe( gulp.dest(config.js.dest) )
-		.pipe(browserSync.stream({ match: '**/*.js' }));
+		.pipe( browserSync.stream({ match: '**/*.js' }) );
 });
 gulp.task('img', function() {
 	return gulp.src(config.img.src)
-        .pipe(imagemin())
-		.pipe(gulp.dest(config.img.dest));
+        .pipe( imagemin() )
+		.pipe( gulp.dest(config.img.dest) );
 });
