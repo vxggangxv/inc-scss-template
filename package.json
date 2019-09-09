@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "include-sass-template-engine",
   "version": "0.0.0",
   "description": "템플릿 엔진",
@@ -20,6 +20,7 @@
     "gulp-cssmin": "^0.2.0",
     "gulp-file-include": "^2.0.1",
     "gulp-html-beautify": "^1.0.1",
+    "gulp-replace": "^1.0.0",
     "gulp-if": "^1.2.5",
     "gulp-imagemin": "^6.0.0",
     "gulp-plumber": "^0.6.6",

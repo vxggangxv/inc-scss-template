@@ -16,6 +16,7 @@ var del = require('del'),
 	// plumber   = require('gulp-plumber'),
 	watch     = require('gulp-watch'),
 	htmlbeautify  = require('gulp-html-beautify'),
+	replace  = require('gulp-replace'),
 	browserSync = require('browser-sync').create(), // browser-sync 호출
 
 	config  = require('./config')(); // 환경설정 ./config.js
@@ -87,6 +88,14 @@ gulp.task('clean:js', function(){
 	del(config.js.dest);
 });
 
+gulp.task('replace_server', function() {
+	return gulp.src(config.template.dest + '/**/*.html')
+		.pipe( replace('/static/valuehotelgangneung/', '/static2/valuehotelgangneung/') )
+		.pipe( replace('/img/valuehotelgangneung/', '/img2/valuehotelgangneung/') )
+		.pipe( gulp.dest(config.template.dest) );
+
+});
+
 // HTML 템플릿
 gulp.task('template', function(){
 	return gulp.src(config.template.src)
@@ -105,7 +114,7 @@ gulp.task('template_m', function(){
 			basepath: '@file'
 		}))
 		.pipe( htmlbeautify(config.htmlbeautify) )
-		.pipe( gulp.dest( config.template.dest_m) )
+		.pipe( gulp.dest(config.template.dest_m) )
 		.pipe( browserSync.stream({ match: '**/*.html' }) );
 });
 // scss 컴파일러
